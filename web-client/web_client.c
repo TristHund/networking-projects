@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
 
   if (argc != 2) {
 
-    fprintf(stderr, "Usage: %s <hostname>\n", argv[0]);
+    fprintf(stderr, "Error: Only one hostname argument is accepted for refferent '%s <hostname>'\n", argv[0]);
     return 1;
   }
 
@@ -52,8 +52,7 @@ int main(int argc, char *argv[]) {
 
   // Send HTTP GET request
   snprintf(buffer, sizeof(buffer),
-           "GET / HTTP/1.1\r\nHost: %s\r\nConnection: close\r\n\r\n",
-           hostname);
+           "GET / HTTP/1.1\r\nHost: %s\r\nConnection: close\r\n\r\n", hostname);
 
   if (send(sockfd, buffer, strlen(buffer), 0) < 0) {
     perror("Error: Could not send request");
